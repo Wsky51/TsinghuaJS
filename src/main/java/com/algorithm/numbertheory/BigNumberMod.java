@@ -83,8 +83,8 @@ public class BigNumberMod {
         return (int) ans;
     }
 
-    public static int powModWithoutRecursion(int a, int n, int m) {
-        int res = 1;
+    public static int powModWithoutRecursion(long a, long n, int m) {
+        long res = 1;
         while (n != 0) {
             if ((n & 1) == 1) {
                 res = res * a % m;
@@ -92,7 +92,7 @@ public class BigNumberMod {
             n /= 2;
             a = a * a % m;
         }
-        return res;
+        return (int)(res%m);
     }
 
     /**

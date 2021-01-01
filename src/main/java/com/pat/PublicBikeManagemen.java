@@ -1,5 +1,4 @@
 package com.pat;
-
 import java.util.*;
 
 /**
@@ -182,14 +181,5 @@ public class PublicBikeManagemen {
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 

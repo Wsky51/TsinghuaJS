@@ -9,7 +9,7 @@ public class Sqrt {
 
     public static void main(String[] args) {
         System.out.println(sqrt(16,0.01));//尝试：5.478515625,误差为：0.014133453369140625，一共计算了15次
-        System.out.println(sqrtNewton(16,0.01));//一共仅计算了5次
+        System.out.println(sqrtNewton(3,0.01));//一共仅计算了5次
 
     }
 
@@ -50,6 +50,7 @@ public class Sqrt {
         double e0=n;
         while (e0>e){
             guess=(guess+n/guess)/2;
+            System.out.println("此时n为："+n);
             e0=guess*guess-n;
             System.out.println("尝试："+guess+",误差："+e0);
         }

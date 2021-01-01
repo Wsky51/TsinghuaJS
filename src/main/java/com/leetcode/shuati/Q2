@@ -1,0 +1,104 @@
+package com.leetcode.shuati;
+
+import org.apache.hadoop.yarn.webapp.hamlet2.Hamlet;
+
+//https://leetcode-cn.com/problems/add-two-numbers/ ，序号2
+public class Q2 {
+    public static void main(String[] args) {
+        Q2 q2 = new Q2();
+
+        ListNode l2 = new ListNode(2);
+        ListNode l4 = new ListNode(4);
+        ListNode l3 = new ListNode(3);
+        l2.next = l4;
+        l4.next = l3;
+
+        ListNode l5 = new ListNode(5);
+        ListNode l6 = new ListNode(6);
+        ListNode l4_ = new ListNode(4);
+        l5.next = l6;
+        l6.next = l4_;
+
+        q2.printNode(l2);
+        q2.printNode(l5);
+        q2.addTwoNumbers(l2, l5);
+
+
+    }
+
+    public static void printNode(ListNode node) {
+        if (node != null) {
+            if (node.next == null) {
+                System.out.print(node.val);
+                System.out.println();
+                return;
+            } else {
+                System.out.print(node.val + "->");
+            }
+
+            printNode(node.next);
+        }
+
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode temp1 = l1;
+        ListNode temp2 = l2;
+
+        ListNode resNode = new ListNode();
+        ListNode curNode = resNode;
+
+        int jin = 0;
+        while (temp1 != null && temp2 != null) {
+            int a = temp1.val;
+            int b = temp2.val;
+            int c = (a + b + jin) % 10;
+            jin = (a + b + jin) / 10;
+            ListNode tempNode = new ListNode(c);
+            curNode.next = tempNode;
+            curNode = tempNode;
+
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        while (temp1 != null) {
+            ListNode tempNode = new ListNode((temp1.val + jin)%10);
+            jin=(temp1.val + jin)/10;
+            curNode.next = tempNode;
+            curNode = tempNode;
+            temp1 = temp1.next;
+        }
+
+        while (temp2 != null) {
+            ListNode tempNode = new ListNode((temp2.val + jin)%10);
+            jin=(temp2.val + jin)/10;
+            curNode.next = tempNode;
+            curNode = tempNode;
+            temp2 = temp2.next;
+        }
+
+        if (jin>0){
+            ListNode tempNode = new ListNode(jin);
+            curNode.next=tempNode;
+        }
+        return resNode.next;
+    }
+}
+
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
